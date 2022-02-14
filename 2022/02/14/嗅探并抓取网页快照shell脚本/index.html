@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about | Hexo</title>
+  <title>嗅探并抓取网页快照shell脚本 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="about | Hexo">
+  <meta name="description" content="嗅探并抓取网页快照shell脚本 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -420,9 +420,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-嗅探并抓取网页快照shell脚本" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about</h1>
+        <h1 class="article-title">嗅探并抓取网页快照shell脚本</h1>
     
     <div class="article-meta">
         
@@ -432,7 +432,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-06 18:27:12'>2022-02-06 18:27</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-14 21:56:28'>2022-02-14 20:57</time>
         
     </div>
     <div class="article-meta">
@@ -454,7 +454,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%97%85%E6%8E%A2%E7%BD%91%E6%AE%B5%E5%BC%80%E6%94%BE80%E5%B9%B6%E6%8A%93%E5%8F%96%E7%BD%91%E9%A1%B5%E5%BF%AB%E7%85%A7%E6%95%B4%E7%90%86%E4%B8%BAHTML"><span class="toc-text">嗅探网段开放80并抓取网页快照整理为HTML</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -470,7 +470,30 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <blockquote>
+<h2 id="嗅探网段开放80并抓取网页快照整理为HTML"><a href="#嗅探网段开放80并抓取网页快照整理为HTML" class="headerlink" title="嗅探网段开放80并抓取网页快照整理为HTML"></a>嗅探网段开放80并抓取网页快照整理为HTML</h2></blockquote>
+<p>使用Nmap嗅探本地网段开放80端口的服务器，得到结果保存到文件NS_192.168.1里</p>
+<pre><code class="shell">nmap -A -p 80 --open 192.168.1.0/24 -oG NS_192.168.1
+</code></pre>
+<p>将保存的内容进行过滤，得到ip</p>
+<pre><code class="shell">cat NS_192.168.1 | grep -v &quot;Nmap&quot; | awk &#39;print $2&#39;
+</code></pre>
+<p>利用截图工具cutycapt对网页进行快照</p>
+<pre><code class="shell">for ip in `cat NS_192.168.1 | grep -v &quot;Nmap&quot; | awk &#39;print $2&#39;`
+do
+    cutycapt --url=$ip --out=$ip.png;
+done
+</code></pre>
+<p>创建HTML文件，并将图片输入文件中</p>
+<pre><code class="shell">nmap -A -p 80 --open 192.168.1.0/24 -oG NS_192.168.1
+IPaddr=(`cat NS_192.168.1 | grep -v &quot;Nmap&quot; | awk &#39;print $2&#39;`)
+for ip in `cat NS_192.168.1 | grep -v &quot;Nmap&quot; | awk &#39;print $2&#39;`;do cutycapt --url=$ip --out=$ip.png;done
+echo &quot;&lt;html&gt;&lt;body&gt;&quot; &gt;web.html
+ls -l *.png | awk -F : &#39;&#123;print $1&quot;:\n&lt;br&gt;&lt;img src=\&quot;&quot;$1&quot;&quot;$2&quot;\&quot; widch=600&gt;&lt;br&gt;&quot;&#125;&#39; &gt;&gt;web.html
+#  &lt;br&gt;&lt;img src=&quot;$1$2&quot; widch=600&gt;&lt;br&gt;
+echo &quot;&lt;/body&gt;&lt;/html&gt;&quot; &gt;&gt;web.html
+</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
     </div>

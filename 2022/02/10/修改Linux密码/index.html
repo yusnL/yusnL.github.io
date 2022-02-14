@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>about | Hexo</title>
+  <title>linux各版本非登录密码修改 | Hexo</title>
   <meta name="keywords" content="">
-  <meta name="description" content="about | Hexo">
+  <meta name="description" content="linux各版本非登录密码修改 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -420,19 +420,29 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+        <article id="post-修改Linux密码" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">about</h1>
+        <h1 class="article-title">linux各版本非登录密码修改</h1>
     
     <div class="article-meta">
         
         
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="系统">系统</a> > 
+            
+            <a  data-rel="系统&lt;---&gt;Linux">Linux</a>
+            
+        </span>
         
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-06 18:27:12'>2022-02-06 18:27</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-14 19:57:36'>2022-02-10 19:38</time>
         
     </div>
     <div class="article-meta">
@@ -454,7 +464,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CentOS-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-text">CentOS 修改密码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kali-%E4%BF%AE%E6%94%B9%E5%AF%86%E7%A0%81"><span class="toc-text">Kali 修改密码</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -470,7 +480,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h2 id="CentOS-修改密码"><a href="#CentOS-修改密码" class="headerlink" title="CentOS 修改密码"></a>CentOS 修改密码</h2><pre><code>启动CentOS 进入内核按e 如下页面
+</code></pre>
+<p><img src="/img/1644493464(1).png"></p>
+<pre><code>进入内核启动页面 找到UTF-8在其后添加：rd.break console=tty0
+按Ctrl+X启动
+</code></pre>
+<blockquote>
+<p>进入紧急求援模式，依次输入如下指令：</p>
+<pre><code>mount –o remount,rw /sysroot
+chroot /sysroot
+passwd  &#39;root密码&#39;
+touch /.autorelabel
+</code></pre>
+</blockquote>
+<pre><code>连续输入两次exit退出,等待系统启动
+</code></pre>
+<p><img src="/img/1644494044(1).png"></p>
+<hr>
+<h2 id="Kali-修改密码"><a href="#Kali-修改密码" class="headerlink" title="Kali 修改密码"></a>Kali 修改密码</h2><pre><code>启动Kali 进入内核按e
+</code></pre>
+<p><img src="/img/1644494511(1).png"></p>
+<pre><code>找到 ro ，改为 rw  quiet init=/bin/bash
+</code></pre>
+<p><img src="/img/1644495122(1).png"></p>
+<pre><code>按Ctrl+X 或 F10进行保存
+来到如下页面输入passwd username来更改密码
+</code></pre>
+<p><img src="/img/1644495802(1).png"></p>
+<blockquote>
+<p><strong>如选择修改root用户密码后登陆失败，请进行如下操作</strong> </p>
+</blockquote>
+<pre><code class="shell">
+修改 /etc/pam.d/gdm-passwd  
+vi /etc/pam.d/gdm-passwd
+
+注释其中auth required pam_succeed_if.so user!=root quiet行
+“# auth required pam_succeed_if.so user!=root quiet”
+</code></pre>
+<pre><code class="shell">
+如确认已更改gdm-passwd后仍无法登录，尝试如下命令
+dpkg --configure -a
+</code></pre>
+<pre><code>重启（真机：物理上的  虚拟机：Ctrl+Alt，Ctrl+R）
+</code></pre>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
     </div>
