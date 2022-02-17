@@ -2,18 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>子域名探索的shell脚本 | Hexo</title>
+  <title>子域名探索的shell脚本 | 雨声的博客</title>
   <meta name="keywords" content="">
-  <meta name="description" content="子域名探索的shell脚本 | Hexo">
+  <meta name="description" content="子域名探索的shell脚本 | 雨声的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
 <meta property="og:url" content="https://yusnl.github.io/about/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="雨声的博客">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-02-06T10:27:12.000Z">
 <meta property="article:modified_time" content="2022-02-06T10:27:12.249Z">
-<meta property="article:author" content="Yusn">
+<meta property="article:author" content="雨声">
 <meta name="twitter:card" content="summary">
 
 
@@ -62,7 +62,7 @@
          src="/img/avatar.jpg"/>
 </a>
 <div class="author">
-    <span>Yusn</span>
+    <span>雨声</span>
 </div>
 
 <div class="icon">
@@ -160,7 +160,7 @@
     <li>
         <div class="all active" data-rel="全部文章">全部文章
             
-                <small>(10)</small>
+                <small>(11)</small>
             
         </div>
     </li>
@@ -172,7 +172,7 @@
                         <i class="fold iconfont icon-right"></i>
                         
                         编程
-                        <small>(1)</small>
+                        <small>(3)</small>
                         
                     </div>
                     
@@ -183,7 +183,7 @@
                                         
                                         shell编程
                                         
-                                            <small>(1
+                                            <small>(3
                                                 )</small>
                                         
                                     </div>
@@ -269,7 +269,7 @@
         
     </div>
 </div>
-<input type="hidden" id="yelog_site_posts_number" value="10">
+<input type="hidden" id="yelog_site_posts_number" value="11">
 
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
@@ -322,7 +322,15 @@
     
     <nav id="title-list-nav">
         
-        <a  class="全部文章 "
+        <a  class="全部文章 编程 shell编程 "
+           href="/2022/02/14/%E6%BC%8F%E6%B4%9E%E5%88%A9%E7%94%A8%E7%A8%8B%E5%BA%8F%E4%B8%8B%E8%BD%BD%E7%9A%84shell%E8%84%9A%E6%9C%AC/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="漏洞利用程序下载的shell脚本">漏洞利用程序下载的shell脚本</span>
+            <span class="post-date" title="2022-02-14 22:40:13">2022/02/14</span>
+        </a>
+        
+        <a  class="全部文章 编程 shell编程 "
            href="/2022/02/14/%E5%97%85%E6%8E%A2%E5%B9%B6%E6%8A%93%E5%8F%96%E7%BD%91%E9%A1%B5%E5%BF%AB%E7%85%A7shell%E8%84%9A%E6%9C%AC/"
            data-tag=""
            data-author="" >
@@ -339,10 +347,10 @@
         </a>
         
         <a  class="全部文章 系统 Linux "
-           href="/2022/02/11/LAMP%E4%B8%8Ephpwind%E9%81%BF%E5%9D%91%E6%8C%87%E5%8D%97/"
+           href="/2022/02/11/LAMP%E4%B8%8Ephpwind%E9%81%BF%E5%9D%91/"
            data-tag=""
            data-author="" >
-            <span class="post-title" title="LAMP搭建与phpwind安装避坑指南">LAMP搭建与phpwind安装避坑指南</span>
+            <span class="post-title" title="LAMP搭建与phpwind安装">LAMP搭建与phpwind安装</span>
             <span class="post-date" title="2022-02-11 08:40:08">2022/02/11</span>
         </a>
         
@@ -442,7 +450,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-14 20:56:19'>2022-02-14 17:20</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-15 11:08:16'>2022-02-14 17:20</time>
         
     </div>
     <div class="article-meta">
@@ -464,7 +472,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E4%BB%A3%E7%A0%81"><span class="toc-text">完整代码</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -480,18 +488,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="a351c6b256e912fcbd9af2ac348c49f338bc93429aebc0a8e349f94ea9353cc2">10d79030e8222445804370796b90fca13e477bb55bd8c706f4e41a72ef10559d5a05295f3790ee597cfab0a3702de0c219a8b1a01c97b6d296ba9a6bbd078852ef46cf6d33e8fdb4649ce0edd1bf2038abe25c6ec742fb15ff00afafd2628e6d401ebe8b1923bfe5a4ba1babd19a8eb3740078f3b55e4b9760998c7bd2fbda3fbd9610e6dbc1f2330eeb2a45ec6b9fb9e6504c1e9ccb70d7f7ef3cd3111ba9ff60a31872d4c546e991e9d4d6746901b1f0d3d43c58fe77d04700a8e651e1dd977099ffc86b223965c25527a154ff7b65bf9bb7429cbd6a53582694f3f8f08c33a827ef31c9ff1b6180b0ec8be6df08e0b8f4de5fafa084c2b4021420348c938a7c956e295b60634839678f2def375c077924de7fa714004e17f844f7120efdf664013f82836d802454444602922cb8c0ad90cf44f0ca912d304d08a8055e71788e854c99acb1be5bea05f8ba7052c5198bf09aa1d5e7c4f4fba8eba793584745dc550917ceef6a1051d1afb0d7bf4fe373624f6884a97110eca77bbd7dd6042763a01b33d0fc7b38fcbb1455c46997f6f7d4d9a357c325d51ad8c3918010871bcc703f000bcb7766a0dda15deba6d93dff1450bf3703b91ef6784331c6d394bd0edfbc06c30b07b63d415ef0075e79dfa636f7f00f56c3b85370765e1036edc7ae48ab59d73709f1628b387737fd39aead61825f292a3c408119cc9bd0701c2b52d8c2bf7f39a14fabc8a0ca920f0e8f1815d12647c3619e8038fc71f55ce412a0ba4d7c2a4bd6383ba5eeb357b9e27d543ab4e542ee1daf42df0df45c35902311561b86496f7ba726128faaa4cc37c87fdbf500adfa76c8d0c4327c9daa399107e520cc40c307847004ca3eee2bf670271ec1014be2b79c3ec4d8f12b432d892dff6a68425a22f6ed388836055c9a49d08f5f4597193378bb29bfae4a90ef07b4085a05c387747db0744508b82a205f79d5dd0832f290aeb9dea8b5773c7be4d4cdb259fa32c5dd2d4839f7364316a4f5495a756eb25b1ab29bd5e0acc5f2750af071a25dad764d2cd1d6ac7ff6648741f74c72bc5decce7cccc18644f7c8bb43d9a9792373cd64cdc648fe31086f3c8dbb6f95bcb2d2cf53e3a5d3241e35130150929a09deab2231e9750c751d3086a3b89868264fda9eef56bcac402881a45035aa196ece95c4500b1bb254053d0052996d52651accb6924f308557708617c5f67800f9e89b172e2e7a4bfe036d630adf8eec1f19bfb1f87348773e1ce046fc2717bf3dc3061945777d78bfd6e489d4ca4fc4f5ba7770400d94e3fa60fb6adba856b19497b2d88d716aa5a6cfbfc825a2705858eab39b81936a3f2625d8743afdba0fee368913b8211a152ba5a7de5a64ed2b6b60d825394e3e7ad6e9c9f22ba61100fcd8eda1bb0daac8c70564153fb252bc5ee23a6ce05f80a5a0a02293c2f245e971bbf9ef40b068af5897f9410787542e742bbdb547368e695c54093964d74ba8797d68cd80381d38db29037cac7a03ee0e223c3354204951c5ba984fb98ebcffc45ee0cf193147cbed37e3aa5c5745adc3975415cb813a4ac515c6d496cdd38ac8e54c32a4d1300c1e9e0d9a77b5f2da97d100d32ba961cea75518ccef47ed57b4da0a2259783da0b1b11a7dbc47eb865387d22437716db8f3dc7bd96873821bc9dbf835c3b644a559302fa5e085c6f84f82eb591f19fc92ca0e21d86bb4a557ac25434267b7e165db17777faa203198dfd7a40efd4e21c4bfb65a4a5c25ef6155fea7477cf893b795bc9d6bbb99234bbfc3bdf988d44fcf2c17663cab1d61801f1c37a8f53aa6ca5dd2472e7e3b6c85274a273ec02d4dcb1150bd12dde34bd49b79f6ee7f895e2a934c583fc52a7aa30fea5ec1a14ed3396cf63cf742e4261e5c48968f657d824d87fba476ac57689c72f49f40de1a7e140f78dabe</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-default">
-      <input class="hbe hbe-input-field hbe-input-field-default" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-default" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-default">Hey, password is required here.</span>
-      </label>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">
+        <blockquote>
+<p>搜索megacorpone.com 的子域名，并查询其对应IP</p>
+</blockquote>
+<p>进入网页F12查看源文件，发现标签href属性蕴含大量其子域域名。</p>
+<p><img src="/img/1644835715(1).png"></p>
+<p>下载网页源代码</p>
+<pre><code class="shell">address=www.megacorpone.com
+wget $address
+</code></pre>
+<p>对下载完成的index.html文件进行过滤</p>
+<p>过滤出蕴含href和http关键字的行</p>
+<pre><code class="shell">grep -o &#39;href.*p:.*\.com&#39; index.html
+</code></pre>
+<p><img src="/img/1644836310(1).png"></p>
+<p>剔除父域名+去重</p>
+<pre><code class="shell">grep -v &quot;www\.&quot;|uniq
+</code></pre>
+<p>用awk命令对输出切片，得到子域名</p>
+<pre><code class="shell">awk -F &quot;\/\/&quot; &#39;&#123;print $2&#125;&#39; 2&gt;/dev/null
+</code></pre>
+<p><img src="/img/1644836746(1).png"></p>
+<p>对输出进行host查询对应ip</p>
+<p><img src="/img/1644836933(1).png"></p>
+<hr>
+<h3 id="完整代码"><a href="#完整代码" class="headerlink" title="完整代码"></a>完整代码</h3><pre><code>#!/bin/zsh
+# ipscan.sh
+address=www.megacorpone.com
+wget $address
+grep -o &#39;href.*p:.*\.com&#39; index.html|grep -v &quot;www\.&quot;|uniq|awk -F &quot;//&quot; &#39;&#123;print $2&#125;&#39; 2&gt;/dev/null|while read addr;do host $addr;done
+</code></pre>
+<hr>
+
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
     </div>
