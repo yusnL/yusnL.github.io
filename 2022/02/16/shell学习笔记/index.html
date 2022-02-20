@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>漏洞利用程序下载的shell脚本 | 雨声的博客</title>
+  <title>shell学习笔记 | 雨声的博客</title>
   <meta name="keywords" content="">
-  <meta name="description" content="漏洞利用程序下载的shell脚本 | 雨声的博客">
+  <meta name="description" content="shell学习笔记 | 雨声的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -474,9 +474,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-漏洞利用程序下载的shell脚本" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-shell学习笔记" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">漏洞利用程序下载的shell脚本</h1>
+        <h1 class="article-title">shell学习笔记</h1>
     
     <div class="article-meta">
         
@@ -496,7 +496,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-15 11:06:19'>2022-02-14 22:40</time>
+            发布时间 : <time class="date" title='最后更新: 2022-02-16 10:03:57'>2022-02-16 09:46</time>
         
     </div>
     <div class="article-meta">
@@ -518,7 +518,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -534,29 +534,28 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><blockquote>
-<p>ExploitDB是一个面向全世界黑客的漏洞提交平台，该平台会公布最新漏洞的相关情况</p>
-<p>Exploit-DB是一个漏洞库，它提供一整套庞大的归档体系，其中涵盖了各类公开的攻击事件、漏洞报告、安全文章以及技术教程等资源。Kali Linux中保存了一个该漏洞库的拷贝，利用Searchsploit命令可以查找需要的渗透模块，它将搜索所有的漏洞和shellcode而且该漏洞库是保存在本地的，在没有网络的情况下也可以使用。</p>
-</blockquote>
-<blockquote>
-<p>Searchsploit 是一个针对ExploitDB的命令行搜索工具，可获取Exploit数据库的脱机副本</p>
-<pre><code class="shell">searchsploit afd windows -w -t
-#-w 返回exploit-db.com上的信息
-#-t 搜索漏洞利用标题
-</code></pre>
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
+<p>Shell 是一个用 C 语言编写的程序，它是用户使用 Linux 的桥梁。Shell 既是一种命令语言，又是一种程序设计语言。</p>
+<p>本篇一直更新。</p>
 </blockquote>
 <hr>
-<blockquote>
-<p>用shell脚本在exploit-db.com中下载漏洞利用脚本程序</p>
-</blockquote>
-<pre><code class="shell">searchsploit afd windows -w -t
-searchsploit afd windows -w -t | grep http | cut -f 2 -d &quot;|&quot;
-for e in $(searchsploit afd windows -w -t | grep http | cut -f 2 -d &quot;|&quot;)
-do 
-    exp_name=$(echo $e | cut -d &quot;/&quot; -f 5)
-    url = $(echo $e | sed &#39;s/exploit/raw/ &#39; )
-    wget -q --no-check-certificate $url -0 $exp_name;
-done
+<pre><code class="shell">$#：传入脚本的参数个数；
+ 
+$0:  脚本自身的名称；　　
+ 
+$1:  传入脚本的第一个参数；
+ 
+$2:  传入脚本的第二个参数；
+ 
+$@: 传入脚本的所有参数；
+ 
+$*：传入脚本的所有参数；
+ 
+$$:  脚本执行的进程id；
+ 
+$?:  上一条命令执行后的状态，结果为0表示执行正常，结果为1表示执行异常；
+ 
+其中$@与$*正常情况下一样，当在脚本中将$*加上双引号作为“$*”引用时，此时将输入的所有参数当做一个整体字符串对待。比如输入参数有a b c三个参数，则“$*”表示“a b c”一个字符串。
 </code></pre>
 
       
