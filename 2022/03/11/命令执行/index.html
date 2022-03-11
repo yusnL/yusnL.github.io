@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>git_clone拉取失败方法 | 雨声的博客</title>
+  <title>命令执行漏洞 | 雨声的博客</title>
   <meta name="keywords" content="">
-  <meta name="description" content="git_clone拉取失败方法 | 雨声的博客">
+  <meta name="description" content="命令执行漏洞 | 雨声的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -590,9 +590,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-git-clone拉取失败方法" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-命令执行" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">git_clone拉取失败方法</h1>
+        <h1 class="article-title">命令执行漏洞</h1>
     
     <div class="article-meta">
         
@@ -602,7 +602,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="随记">随记</a>
+            <a  data-rel="笔记">笔记</a>
             
         </span>
         
@@ -610,7 +610,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-19 19:35:10'>2022-02-10 16:34</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-11 20:05:50'>2022-03-11 16:35</time>
         
     </div>
     <div class="article-meta">
@@ -632,7 +632,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-git-clone-%E6%8B%89%E5%8F%96github%E5%A4%B1%E8%B4%A5"><span class="toc-text">使用 git clone 拉取github失败</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%BD%BF%E7%94%A8git-clone-%E6%8B%89%E5%8F%96github%E6%97%B6%E5%87%BA%E7%8E%B0Failed-connect-to-github-com-443%EF%BC%9B-Connection-refused"><span class="toc-text">Linux使用git clone 拉取github时出现Failed connect to github.com:443； Connection refused</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E"><span class="toc-text">命令执行漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86"><span class="toc-text">原理</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%9B%B8%E5%85%B3%E5%87%BD%E6%95%B0"><span class="toc-text">相关函数</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C%E6%BC%8F%E6%B4%9E%E5%8D%B1%E5%AE%B3"><span class="toc-text">命令执行漏洞危害</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -648,13 +648,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="使用-git-clone-拉取github失败"><a href="#使用-git-clone-拉取github失败" class="headerlink" title="使用 git clone 拉取github失败"></a>使用 git clone 拉取github失败</h1><h2 id="Linux使用git-clone-拉取github时出现Failed-connect-to-github-com-443；-Connection-refused"><a href="#Linux使用git-clone-拉取github时出现Failed-connect-to-github-com-443；-Connection-refused" class="headerlink" title="Linux使用git clone 拉取github时出现Failed connect to github.com:443； Connection refused"></a>Linux使用git clone 拉取github时出现Failed connect to <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=github&spm=1001.2101.3001.7020">github</a>.com:443； Connection refused</h2><blockquote>
-<p>手动配置DNS解析关系</p>
-<pre><code># 打开 https://websites.ipaddress.com/github.com 查询IP
-cat &gt;&gt;/etc/hosts &lt;&lt;EOF
-&#39;ip address&#39;   github.com
-EOF
+        <h1 id="命令执行漏洞"><a href="#命令执行漏洞" class="headerlink" title="命令执行漏洞"></a>命令执行漏洞</h1><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><blockquote>
+<p>脚本程序在用一些执行系统命令的函数调用外部程序时，没有对用户输入的参数进行严格的过滤。</p>
+<p>在调用这些函数执行系统命令时，用户的输入将作为系统命令的参数被拼接到命令行中被执行，造成命令执行漏洞</p>
+</blockquote>
+<h4 id="相关函数"><a href="#相关函数" class="headerlink" title="相关函数"></a>相关函数</h4><pre><code class="php">// php中调用外部程序常见的函数
+
+system() 
+    // 有回显 &lt;?php system($_POST[&#39;cmd&#39;]);?&gt;
+    
+passthru()
+    // 有回显 &lt;?php passthru($_POST[&#39;cmd&#39;]);?&gt;
+    
+exec()
+    // 回显最后一行 &lt;?php echo/print exec($_POST[&#39;cmd&#39;]);?&gt;
+    
+shell_exec()
+    // 无回显，必须输出 &lt;?php echo/print shell_exec($_POST[&#39;cmd&#39;]);?&gt;
+    
+popen()
+    // 返回文件指针 &lt;?php $cmd=$_POST[&#39;cmd&#39;].&quot;&gt;&gt; 1.txt&quot;; popen(&quot;$cmd&quot;,&#39;r&#39;);?&gt;
+    // 将返回结果输出至1.txt内
+    
+``
+    // ``中的代码被当作OS命令执行
+    // &lt;?php echo `whoami`?&gt;
+    // &lt;?php $cmd = $_GET[&#39;cmd&#39;];print `$cmd`; ?&gt;
 </code></pre>
+<hr>
+<h4 id="命令执行漏洞危害"><a href="#命令执行漏洞危害" class="headerlink" title="命令执行漏洞危害"></a>命令执行漏洞危害</h4><blockquote>
+<p>继承web权限，执行系统命令</p>
+<p>继承web权限，读写文件</p>
+<p>反弹shell</p>
+<p>控制网站</p>
+<p>拿到服务器</p>
 </blockquote>
 
       

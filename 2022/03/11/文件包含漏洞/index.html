@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>git_clone拉取失败方法 | 雨声的博客</title>
+  <title>文件包含漏洞 | 雨声的博客</title>
   <meta name="keywords" content="">
-  <meta name="description" content="git_clone拉取失败方法 | 雨声的博客">
+  <meta name="description" content="文件包含漏洞 | 雨声的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -590,9 +590,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-git-clone拉取失败方法" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-文件包含漏洞" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">git_clone拉取失败方法</h1>
+        <h1 class="article-title">文件包含漏洞</h1>
     
     <div class="article-meta">
         
@@ -602,7 +602,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="随记">随记</a>
+            <a  data-rel="笔记">笔记</a>
             
         </span>
         
@@ -610,7 +610,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-19 19:35:10'>2022-02-10 16:34</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-11 16:29:22'>2022-03-11 09:26</time>
         
     </div>
     <div class="article-meta">
@@ -632,7 +632,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-git-clone-%E6%8B%89%E5%8F%96github%E5%A4%B1%E8%B4%A5"><span class="toc-text">使用 git clone 拉取github失败</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%BD%BF%E7%94%A8git-clone-%E6%8B%89%E5%8F%96github%E6%97%B6%E5%87%BA%E7%8E%B0Failed-connect-to-github-com-443%EF%BC%9B-Connection-refused"><span class="toc-text">Linux使用git clone 拉取github时出现Failed connect to github.com:443； Connection refused</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%BC%8F%E6%B4%9E"><span class="toc-text">文件包含漏洞</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%8E%9F%E7%90%86%EF%BC%9A"><span class="toc-text">原理：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%87%BD%E6%95%B0%E5%8C%85%E6%8B%AC%EF%BC%9A"><span class="toc-text">函数包括：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%BC%8F%E6%B4%9E%E9%98%B2%E5%BE%A1%EF%BC%9A"><span class="toc-text">漏洞防御：</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -648,13 +648,23 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="使用-git-clone-拉取github失败"><a href="#使用-git-clone-拉取github失败" class="headerlink" title="使用 git clone 拉取github失败"></a>使用 git clone 拉取github失败</h1><h2 id="Linux使用git-clone-拉取github时出现Failed-connect-to-github-com-443；-Connection-refused"><a href="#Linux使用git-clone-拉取github时出现Failed-connect-to-github-com-443；-Connection-refused" class="headerlink" title="Linux使用git clone 拉取github时出现Failed connect to github.com:443； Connection refused"></a>Linux使用git clone 拉取github时出现Failed connect to <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=github&spm=1001.2101.3001.7020">github</a>.com:443； Connection refused</h2><blockquote>
-<p>手动配置DNS解析关系</p>
-<pre><code># 打开 https://websites.ipaddress.com/github.com 查询IP
-cat &gt;&gt;/etc/hosts &lt;&lt;EOF
-&#39;ip address&#39;   github.com
-EOF
+        <h1 id="文件包含漏洞"><a href="#文件包含漏洞" class="headerlink" title="文件包含漏洞"></a>文件包含漏洞</h1><h4 id="原理："><a href="#原理：" class="headerlink" title="原理："></a>原理：</h4><blockquote>
+<p>程序在引用文件时，文件名存在用户可控的情况，且没有对文件名做严格的校正与过滤，使得用户可以非法访问本地隐私文件，对日志记录文件进行注入或上传远程恶意文件。</p>
+<p>漏洞发生处通常引用的文件被设置为变量以便进行动态调用，通过函数调用此文件的过程被称为文件包含。</p>
+</blockquote>
+<h4 id="函数包括："><a href="#函数包括：" class="headerlink" title="函数包括："></a>函数包括：</h4><pre><code class="php">* include                // 文件执行到该函数时才调用，发生错误时发出警告并继续向下执行（解释型）
+  include_once           // 执行一次包含且相同文件在整个程序中只能包含一次
+ 
+* require                // 程序运行即调用，发生错误停止运行并输出错误信息
+  require_once
 </code></pre>
+<hr>
+<h4 id="漏洞防御："><a href="#漏洞防御：" class="headerlink" title="漏洞防御："></a>漏洞防御：</h4><blockquote>
+<p>避免文件名外部可控；</p>
+<p>不用变量去接收文件名(动态包含)，写死包含的页面;</p>
+<p>包含文件验证：设置白名单;</p>
+<p>路径限制，禁止目录跳转；</p>
+<p>设置php.ini中allow_url_include为Off；</p>
 </blockquote>
 
       

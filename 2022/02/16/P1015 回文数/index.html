@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>git_clone拉取失败方法 | 雨声的博客</title>
+  <title>洛谷编程：P1015 回文数 | 雨声的博客</title>
   <meta name="keywords" content="">
-  <meta name="description" content="git_clone拉取失败方法 | 雨声的博客">
+  <meta name="description" content="洛谷编程：P1015 回文数 | 雨声的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -590,9 +590,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-git-clone拉取失败方法" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-P1015 回文数" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">git_clone拉取失败方法</h1>
+        <h1 class="article-title">洛谷编程：P1015 回文数</h1>
     
     <div class="article-meta">
         
@@ -602,7 +602,9 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="随记">随记</a>
+            <a  data-rel="编程">编程</a> > 
+            
+            <a  data-rel="编程&lt;---&gt;Python">Python</a>
             
         </span>
         
@@ -610,7 +612,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-19 19:35:10'>2022-02-10 16:34</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-11 23:19:59'>2022-02-16 21:42</time>
         
     </div>
     <div class="article-meta">
@@ -632,7 +634,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8-git-clone-%E6%8B%89%E5%8F%96github%E5%A4%B1%E8%B4%A5"><span class="toc-text">使用 git clone 拉取github失败</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E4%BD%BF%E7%94%A8git-clone-%E6%8B%89%E5%8F%96github%E6%97%B6%E5%87%BA%E7%8E%B0Failed-connect-to-github-com-443%EF%BC%9B-Connection-refused"><span class="toc-text">Linux使用git clone 拉取github时出现Failed connect to github.com:443； Connection refused</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#P1015-%E5%9B%9E%E6%96%87%E6%95%B0"><span class="toc-text">P1015 回文数</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="toc-text">题目描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E6%A0%BC%E5%BC%8F"><span class="toc-text">输入格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%87%BA%E6%A0%BC%E5%BC%8F"><span class="toc-text">输出格式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E6%A0%B7%E4%BE%8B"><span class="toc-text">输入输出样例</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%80%9D%E8%B7%AF"><span class="toc-text">思路</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8F%90%E4%BA%A4%E8%BF%87%E7%A8%8B"><span class="toc-text">提交过程</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E6%8F%90%E4%BA%A4-%E2%80%93-3RE-1AC"><span class="toc-text">一次提交 – 3RE 1AC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BA%8C%E6%AC%A1%E6%8F%90%E4%BA%A4-%E2%80%93-3AC-1RE"><span class="toc-text">二次提交 – 3AC 1RE</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%B8%89%E6%AC%A1%E6%8F%90%E4%BA%A4-%E2%80%93-AC"><span class="toc-text">三次提交 – AC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%9B%9B%E6%AC%A1%E6%8F%90%E4%BA%A4-%E2%80%93-AC"><span class="toc-text">四次提交 – AC</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -648,14 +650,113 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="使用-git-clone-拉取github失败"><a href="#使用-git-clone-拉取github失败" class="headerlink" title="使用 git clone 拉取github失败"></a>使用 git clone 拉取github失败</h1><h2 id="Linux使用git-clone-拉取github时出现Failed-connect-to-github-com-443；-Connection-refused"><a href="#Linux使用git-clone-拉取github时出现Failed-connect-to-github-com-443；-Connection-refused" class="headerlink" title="Linux使用git clone 拉取github时出现Failed connect to github.com:443； Connection refused"></a>Linux使用git clone 拉取github时出现Failed connect to <a target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=github&spm=1001.2101.3001.7020">github</a>.com:443； Connection refused</h2><blockquote>
-<p>手动配置DNS解析关系</p>
-<pre><code># 打开 https://websites.ipaddress.com/github.com 查询IP
-cat &gt;&gt;/etc/hosts &lt;&lt;EOF
-&#39;ip address&#39;   github.com
-EOF
+        <h1 id="P1015-回文数"><a href="#P1015-回文数" class="headerlink" title="P1015 回文数"></a><a target="_blank" rel="noopener" href="https://www.luogu.com.cn/problem/P1015">P1015 回文数</a></h1><h2 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h2><p>若一个数（首位不为零）从左向右读与从右向左读都一样，我们就将其称之为回文数。</p>
+<p>例如：给定一个十进制数 5656，将 5656 加 6565（即把 5656 从右向左读），得到 121121 是一个回文数。</p>
+<p>又如：对于十进制数 8787：</p>
+<p>STEP1：87+78=16587+78=165<br>STEP2：165+561=726165+561=726<br>STEP3：726+627=1353726+627=1353<br>STEP4：1353+3531=48841353+3531=4884</p>
+<p>在这里的一步是指进行了一次 N<em>N</em> 进制的加法，上例最少用了 44 步得到回文数 48844884。</p>
+<p>写一个程序，给定一个 N<em>N</em>（2 \le N \le 102≤<em>N</em>≤10 或 N=16<em>N</em>=16）进制数 M<em>M</em>（100100 位之内），求最少经过几步可以得到回文数。如果在 3030 步以内（包含 3030 步）不可能得到回文数，则输出 <code>Impossible!</code>。</p>
+<h2 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h2><p>两行，分别是 N<em>N</em>，M<em>M</em>。</p>
+<h2 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h2><p>如果能在 3030 步以内得到回文数，输出格式形如 <code>STEP=ans</code>，其中 ans<em>a<strong>n</strong>s</em> 为最少得到回文数的步数。</p>
+<p>否则输出 <code>Impossible!</code>。</p>
+<h2 id="输入输出样例"><a href="#输入输出样例" class="headerlink" title="输入输出样例"></a>输入输出样例</h2><p><strong>输入</strong></p>
+<pre><code>10
+87
 </code></pre>
+<p><strong>输出</strong></p>
+<pre><code>STEP=4
+</code></pre>
+<hr>
+<hr>
+<hr>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><blockquote>
+<p>太简单不写了</p>
 </blockquote>
+<hr>
+<hr>
+<hr>
+<h3 id="提交过程"><a href="#提交过程" class="headerlink" title="提交过程"></a>提交过程</h3><h4 id="一次提交-–-3RE-1AC"><a href="#一次提交-–-3RE-1AC" class="headerlink" title="一次提交 – 3RE 1AC"></a>一次提交 – 3RE 1AC</h4><blockquote>
+<p>不知道问题</p>
+</blockquote>
+<pre><code class="py">def ss(b):
+    ch = &quot;&quot;
+    while b != 0:
+        ch = f&quot;&#123;d if (d := b % a) &lt; 10 else chr(d + 87)&#125;&quot; + ch
+        b //= a
+
+    return ch
+
+
+a = int(input())
+b = input().strip()
+for i in range(30):
+    if b == b[::-1]:
+        exit(f&quot;STEP=&#123;i&#125;&quot;)
+    b = ss(int(b, a) + int(b[::-1], a))
+print(&quot;Impossible!&quot;)
+</code></pre>
+<h4 id="二次提交-–-3AC-1RE"><a href="#二次提交-–-3AC-1RE" class="headerlink" title="二次提交 – 3AC 1RE"></a>二次提交 – 3AC 1RE</h4><blockquote>
+<p>更迷~~</p>
+</blockquote>
+<pre><code class="python">def ss(b):
+    L = &quot;0123456789ABCDEF&quot;
+    ch = &quot;&quot;
+    while b != 0:
+        ch = L[b % a] + ch
+        b //= a
+
+    return ch
+
+
+a = int(input())
+b, c = input(), 0
+for i in range(30):
+    if b == b[::-1]:
+        exit(f&quot;STEP=&#123;i&#125;&quot;)
+    b = ss(int(b, a) + int(b[::-1], a))
+print(&quot;Impossible!&quot;)
+</code></pre>
+<h4 id="三次提交-–-AC"><a href="#三次提交-–-AC" class="headerlink" title="三次提交 – AC"></a>三次提交 – AC</h4><blockquote>
+<p>找到问题 ，exit函数输出会Runtime Error</p>
+</blockquote>
+<pre><code class="python">def ss(b):
+    L = &quot;0123456789ABCDEF&quot;
+    ch = &quot;&quot;
+    while b != 0:
+        ch = L[b % a] + ch
+        b //= a
+
+    return ch
+
+
+a = int(input())
+b, c = input(), 0
+for i in range(30):
+    if b == b[::-1]:
+        exit(print(f&quot;STEP=&#123;i&#125;&quot;))
+    b = ss(int(b, a) + int(b[::-1], a))
+print(&quot;Impossible!&quot;)
+</code></pre>
+<h4 id="四次提交-–-AC"><a href="#四次提交-–-AC" class="headerlink" title="四次提交 – AC"></a>四次提交 – AC</h4><blockquote>
+<p>OK</p>
+</blockquote>
+<pre><code class="python">def ss(b):
+    ch = &quot;&quot;
+    while b != 0:
+        ch = f&quot;&#123;d if (d := b % a) &lt; 10 else chr(d + 87)&#125;&quot; + ch
+        b //= a
+
+    return ch
+
+
+a = int(input())
+b = input().strip()
+for i in range(30):
+    if b == b[::-1]:
+        exit(print(f&quot;STEP=&#123;i&#125;&quot;))
+    b = ss(int(b, a) + int(b[::-1], a))
+print(&quot;Impossible!&quot;)
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源 </span>
