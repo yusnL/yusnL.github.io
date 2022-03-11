@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>php学习笔记 | 雨声的博客</title>
+  <title>split方法 | 雨声的博客</title>
   <meta name="keywords" content="">
-  <meta name="description" content="php学习笔记 | 雨声的博客">
+  <meta name="description" content="split方法 | 雨声的博客">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta property="og:type" content="website">
 <meta property="og:title" content="about">
@@ -544,9 +544,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-php学习总结" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-split方法" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">php学习笔记</h1>
+        <h1 class="article-title">split方法</h1>
     
     <div class="article-meta">
         
@@ -558,7 +558,7 @@
             
             <a  data-rel="编程">编程</a> > 
             
-            <a  data-rel="编程&lt;---&gt;php编程">php编程</a>
+            <a  data-rel="编程&lt;---&gt;Python">Python</a>
             
         </span>
         
@@ -566,7 +566,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-02-16 20:31:04'>2022-02-15 15:31</time>
+            发布时间 : <time class="date" title='最后更新: 2022-03-10 22:23:03'>2022-03-01 21:39</time>
         
     </div>
     <div class="article-meta">
@@ -588,7 +588,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-text">前言</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB%E6%96%B9%E5%BC%8F"><span class="toc-text">文件包含方式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#require%E5%92%8Cinclude%E5%8C%BA%E5%88%AB%EF%BC%9A%E6%8A%A5%E9%94%99%E5%BD%A2%E5%BC%8F"><span class="toc-text">require和include区别：报错形式</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#include%E5%92%8Cinclude-once%E5%8C%BA%E5%88%AB"><span class="toc-text">include和include_once区别</span></a></li></ol></li></ol></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#split%E6%96%B9%E6%B3%95%EF%BC%9A%E9%80%9A%E8%BF%87%E7%89%B9%E5%AE%9A%E7%9A%84%E5%88%86%E9%9A%94%E7%AC%A6%E5%B0%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BF%9B%E8%A1%8C%E5%88%87%E7%89%87"><span class="toc-text">split方法：通过特定的分隔符将字符串进行切片</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%94%A8%E6%B3%95"><span class="toc-text">用法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%E9%BB%98%E8%AE%A4%E6%97%A0%E5%92%8Cnum-0%E6%97%B6%E8%BE%93%E5%87%BA%E5%8E%9F%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%88%97%E8%A1%A8"><span class="toc-text">1. 默认无和num&#x3D;0时输出原字符串列表</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%E6%8C%87%E5%AE%9A%E5%AD%97%E7%AC%A6%E4%B8%B2%E2%80%9Di%E2%80%9D"><span class="toc-text">2. 指定字符串”i”</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-str%E4%B8%8D%E5%8F%AF%E7%9C%81%E7%95%A5"><span class="toc-text">3. str不可省略</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%E6%B3%A8%E6%84%8F%E8%8B%A5%E5%88%86%E5%89%B2%E7%AC%A6%E4%BD%8D%E4%BA%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E4%B8%A4%E7%AB%AF%EF%BC%8C%E5%88%99%E8%BE%93%E5%87%BA%E5%88%97%E8%A1%A8%E4%B8%A4%E7%AB%AF%E4%B8%BA%E2%80%9D%E2%80%9D"><span class="toc-text">4. 注意若分割符位于字符串两端，则输出列表两端为””</span></a></li></ol></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -604,83 +604,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><blockquote>
-<p>PHP（PHP: Hypertext Preprocessor）即“超文本预处理器“，是在服务器端执行的一种解释型脚本语言，适用于Web开发并可嵌入HTML中。</p>
-<p>本篇一直更新</p>
+        <blockquote>
+<h1 id="split方法：通过特定的分隔符将字符串进行切片"><a href="#split方法：通过特定的分隔符将字符串进行切片" class="headerlink" title="split方法：通过特定的分隔符将字符串进行切片"></a>split方法：通过特定的分隔符将字符串进行切片</h1></blockquote>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><pre><code class="py">str.split(str=&quot;&quot;,num=string.count(str))
+</code></pre>
+<blockquote>
+<p>str: 默认所有空字符，包括空格、换行和制表等字符</p>
+<p>num：默认为-1（负数）.代表所有</p>
+<p>返回值：为分割后的字符串列表</p>
 </blockquote>
 <hr>
-<blockquote>
-<p>php 代码与 html不结合时，建议不适用?&gt;结尾（?&gt; 有自带语句结束符 ‘;’ 的效果）</p>
-</blockquote>
-<ul>
-<li>加结尾：后续内容视为纯文本输出，可在php文件结尾添加html代码</li>
-<li>不加结尾：后续内容视为PHP代码直至没有代码，可防止html代码写入php文件</li>
-</ul>
-<blockquote>
-<p>删除变量</p>
-</blockquote>
-<p>用<code>unset()</code>来销毁变量，销毁的是变量名，变量值由PHP垃圾回收机制销毁</p>
-<ul>
-<li>注意在函数中unset全局、引用传递的变量，被销毁的只是函数内的局部变量</li>
-</ul>
-<p>用<code>isset()</code> 用来检查变量是否被设置并是否为空（NULL）</p>
-<blockquote>
-<p>php类型判断</p>
-<p>类型判断函数：is_类型(变量) 返回值为bool型，不可用echo查看</p>
-</blockquote>
-<pre><code>$a = 123;
-var_dump(is_int($a));
-</code></pre>
-<blockquote>
-<p>php文件包含</p>
-<pre><code class="php">include/require # 包含文件
-include_once/require_once # 包含一次文件
-include &#39;filename&#39; # 执行方式
-</code></pre>
-</blockquote>
-<h5 id="文件包含方式"><a href="#文件包含方式" class="headerlink" title="文件包含方式"></a>文件包含方式</h5><ol>
-<li><p>向上包含：在使用目标文件前包含，可以使用目标文件数据</p>
-<ul>
-<li>当前文件使用目标文件数据</li>
-</ul>
-</li>
-<li><p>向下包含：包含目标文件，在目标文件中写当前文件数据，目标文件识别不了当前文件数据，但当前文件                   可运行目标文件中的当前文件数据</p>
-<ul>
-<li>在目标文件中写当前文件数据，目标文件可被当前文件调用执行</li>
-</ul>
-</li>
-</ol>
-<h5 id="require和include区别：报错形式"><a href="#require和include区别：报错形式" class="headerlink" title="require和include区别：报错形式"></a>require和include区别：报错形式</h5><ol>
-<li>include报错不会阻断代码执行</li>
-<li>require报错不再执行require后面的代码</li>
-</ol>
-<h5 id="include和include-once区别"><a href="#include和include-once区别" class="headerlink" title="include和include_once区别"></a>include和include_once区别</h5><ol>
-<li>include调用一次执行一次</li>
-<li>include_once和iclude一样，但会检测在自己之前有没有包含过该文件，若包含过则不执行</li>
-</ol>
-<blockquote>
-<p>php多条sql语句执行</p>
-</blockquote>
-<pre><code class="php">// mysqli_query:执行一次查询，&gt;&gt;查询数据多少可使用第三个参数，但仅且只能执行一条sql语句&lt;&lt;
-// 多条sql语句执行可使用mysqli_multi_query进行查询，用法与mysqli_query相同
-</code></pre>
-<blockquote>
-<p>php 数据变化查询</p>
-</blockquote>
-<p><code>mysqli_insert_id(mysql$link)</code>、<code>$pdo-&gt;lastInsertID()</code>:查询上条命令执行后自增ID的变化</p>
-<p><code>mysqli_affected_rows(mysql$link)</code>、<code>$rs  // $rs=$pdo-&gt;exec() </code>:查询上条命令执行后受影响的记录数</p>
-<blockquote>
-<p>php数组添加元素方式</p>
-</blockquote>
-<pre><code class="php">// 单个数据添加（无数组自动创建）
-$arr[]=1;
-$arr[]=2;
-$arr[]=3;
-// arr=[1,2,3]
+<h4 id="1-默认无和num-0时输出原字符串列表"><a href="#1-默认无和num-0时输出原字符串列表" class="headerlink" title="1. 默认无和num=0时输出原字符串列表"></a>1. 默认无和num=0时输出原字符串列表</h4><pre><code class="py">&quot;didimeni2&quot;.split()       # [&#39;didimeni2&#39;]
 
-多数据添加
-array_push($arr,5,6,7,8);
-// arr=[1,2,3,4,5,6,7,8]
+&quot;didimeni2&quot;.split(&quot;i&quot;,0)  # [&#39;didimeni2&#39;]
+</code></pre>
+<h4 id="2-指定字符串”i”"><a href="#2-指定字符串”i”" class="headerlink" title="2. 指定字符串”i”"></a>2. 指定字符串”i”</h4><pre><code class="py">&quot;didimeni2&quot;.split(&quot;i&quot;)
+
+# [&#39;d&#39;, &#39;d&#39;, &#39;men&#39;, &#39;2&#39;]
+</code></pre>
+<h4 id="3-str不可省略"><a href="#3-str不可省略" class="headerlink" title="3. str不可省略"></a>3. str不可省略</h4><pre><code class="py">&quot;di di men i  2&quot;.split(,2)
+
+# SyntaxError: invalid syntax
+</code></pre>
+<p>修改建议如下：</p>
+<pre><code class="python">&quot;di di men i 2&quot;.split(&quot; &quot;,2)
+
+# [&#39;di&#39;, &#39;di&#39;, &#39;men i 2&#39;]
+</code></pre>
+<h4 id="4-注意若分割符位于字符串两端，则输出列表两端为””"><a href="#4-注意若分割符位于字符串两端，则输出列表两端为””" class="headerlink" title="4. 注意若分割符位于字符串两端，则输出列表两端为””"></a>4. 注意若分割符位于字符串两端，则输出列表两端为””</h4><pre><code class="py">&quot;didimeni&quot;.split(&quot;i&quot;)    # [&#39;d&#39;, &#39;d&#39;, &#39;men&#39;, &#39;&#39;]      
+
+&quot;didimeni&quot;.split(&quot;d&quot;)    # [&#39;&#39;, &#39;i&#39;, &#39;imeni&#39;]
+
+&quot;didimeni&quot;.split(&quot;i&quot;)[:-1]   # [&#39;d&#39;, &#39;d&#39;, &#39;men&#39;]
 </code></pre>
 
       
